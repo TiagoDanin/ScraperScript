@@ -18,15 +18,23 @@ itemOne >> itemTwo
 ```
 
 ```
-itemOne >> itemTwo @> {index: index, elem: elem}
+itemOne >> itemTwo @> {indexName, elemName, subItemOne >> subItemTwo}
 ```
 
 ```
-itemOne >> itemTwo @> [index, elem]
+itemOne >> itemTwo @> [subItemOne >> subItemTwo]
 ```
 
 ```
-itemOne >> itemTwo @> [elem]
+itemOne >> itemTwo @> subItemOne >> subItemTwo
+```
+
+```
+itemOne == itemTwo
+```
+
+```
+itemOne >> itemTwo == "Hello world"
 ```
 
 **Type**
@@ -39,10 +47,9 @@ itemOne >> itemTwo @> [elem]
 - `array`
 - `object`
 
-## Operators
+## Operators / Methods
 - **==**
 - **~=**
-- **&&**
 - **||**
 - **++**
 - **\-\-**
@@ -51,8 +58,6 @@ itemOne >> itemTwo @> [elem]
 - **@>**
 - **>>**
 - **!!**
-
-## Methods
-- **()**
 - **[]**
 - **{}**
+- **""**
