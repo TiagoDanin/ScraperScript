@@ -46,6 +46,7 @@ itemOne >> itemTwo == "Hello world"
 - `number`
 - `array`
 - `object`
+- `boolean`
 
 ## Operators / Methods
 - **==**

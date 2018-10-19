@@ -4,7 +4,7 @@
   "description": "ScraperScript is a query language for Web Scraping",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --exit --timeout 100000"
   },
   "repository": {
     "type": "git",
@@ -18,5 +18,8 @@
   "homepage": "https://github.com/TiagoDanin/ScraperScript#readme",
   "dependencies": {
     "cheerio": "1.0.0-rc.2"
+  },
+  "devDependencies": {
+    "mocha": "5.2.0"
   }
 }
