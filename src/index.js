@@ -1,3 +1,5 @@
+const cheerio = require('cheerio')
+
 const next = (index, tags) => {
 	if (tags && tags[index+1]) {
 		return tags.splice(index+1, tags.length).join(' ')
@@ -5,7 +7,7 @@ const next = (index, tags) => {
 	return false
 }
 
-const parse = (input, html, output) => {
+const parseQuery = (input, html, output) => {
 	if (input === false) {
 		return ''
 	}
@@ -18,13 +20,6 @@ const parse = (input, html, output) => {
 
 	var tags = input.toString().split(' ')
 	var data = tags.reduce((total, current, index) => {
-		/*
-		console.log('------------------')
-		console.log('total:', total)
-		console.log('current:', current)
-		console.log('index:', index)
-		console.log('tags:', tags)
-		*/
 		if (!total && total === false) {
 			return false
 		} else if (total && total.stop) {
@@ -34,7 +29,7 @@ const parse = (input, html, output) => {
 				total.stop = true
 				var hasInput = next(index, tags)
 				if (hasInput) {
-					total.output = parse(
+					total.output = parseQuery(
 						hasInput, html, total.output.replace(/\s$/,'')
 					)
 				} else {
@@ -62,31 +57,37 @@ const parse = (input, html, output) => {
 				total.select += ' > '
 				break
 			}
-			case '==': {
-				total.output = total.output || parse(total.select, html)
+			case '~=': {
+				total.output = total.output || parseQuery(total.select, html)
 				var nextIndex = next(index, tags)
-				if (total.output === parse(nextIndex, html)) {
+				if (total.output === parseQuery(nextIndex, html)) {
 					break
 				}
 				return false
 			}
-			case '~=': {
+			case '==': {
+				total.output = total.output || parseQuery(total.select, html)
+				var nextIndex = next(index, tags)
+				if (total.output === parseQuery(nextIndex, html)) {
+					break
+				}
+				return false
 			}
 			case '||': {
-				total.output = total.output || parse(total.select, html)
+				total.output = total.output || parseQuery(total.select, html)
 				if (total.output) {
 					total.stop = true
 					break
 				}
 
 				var nextIndex = next(index, tags)
-				total.output = parse(nextIndex, html)
+				total.output = parseQuery(nextIndex, html)
 				break
 			}
 			case '++': {
-				total.output = total.output || parse(total.select, html)
+				total.output = total.output || parseQuery(total.select, html)
 				var nextIndex = next(index, tags)
-				var addOutput = parse(nextIndex, html)
+				var addOutput = parseQuery(nextIndex, html)
 
 				if (Array.isArray(total.output)) {
 					total.select = [].concat(total.output, addOutput)
@@ -101,8 +102,8 @@ const parse = (input, html, output) => {
 			}
 			case '--': {
 				var nextIndex = next(index, tags)
-				var removeRaw = parse(nextIndex, html)
-				var output = total.output || parse(total.select, html)
+				var removeRaw = parseQuery(nextIndex, html)
+				var output = total.output || parseQuery(total.select, html)
 
 				if (output && output.replace && typeof output.replace == 'function') {
 					total.output = output.replace(removeRaw, '')
@@ -152,14 +153,14 @@ const parse = (input, html, output) => {
 		}
 
 		var table = html(data.select).map((index, elem) => {
-			var parseRaw = parse(select, html(elem))
+			var queryRaw = parseQuery(select, html(elem))
 			if (type == 'object') {
 				var arrayOutput = {}
 				arrayOutput[nameOfIndex] = index
-				arrayOutput[nameOfData] = parseRaw
+				arrayOutput[nameOfData] = queryRaw
 				return arrayOutput
 			}
-			return parseRaw
+			return queryRaw
 		}).get()
 		if (type == 'string') {
 			return table.join(', ')
@@ -183,4 +184,58 @@ const parse = (input, html, output) => {
 	return false
 }
 
-module.exports = parse
+const parseValues = (input) => {
+	var match = input.match(/^-\s([_-\w]*):\s*(.*)\s*:(\w*)/)
+	return output = {
+		key: match[1],
+		query: match[2],
+		type: match[3]
+	}
+}
+
+const parseHtml = (input) => {
+	return cheerio.load(input)
+}
+
+const parseType = (input, type) => {
+	if (type == 'string') {
+		return input.toString()
+	} else if (type == 'boolean') {
+		return Boolean(input)
+	} else if (type == 'object') {
+		if (typeof input == 'object') {
+			return input
+		} else {
+			return {input}
+		}
+	} else if (type == 'array') {
+		if (Array.isArray(input)) {
+			return input
+		} else {
+			return Array(input)
+		}
+	}
+	return input
+}
+
+const parseFile = (code, htmlRaw) => {
+	var output = {}
+	var html = parseHtml(htmlRaw)
+	for (var line of code.split('\n')) {
+		var values = parseValues(line)
+		output[values.key] = parseType(
+			parseQuery(values.query, html),
+			values.type
+		)
+		return Boolean(input)
+	}
+	return output
+}
+
+module.exports = {
+	parseQuery,
+	parseHtml,
+	parseQuery,
+	parseValues,
+	parseType
+}
