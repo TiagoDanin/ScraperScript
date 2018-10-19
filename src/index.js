@@ -1,8 +1,17 @@
 const next = (index, tags) => {
-	return tags.splice(index+1, tags.length).join(' ')
+	if (tags && tags[index+1]) {
+		return tags.splice(index+1, tags.length).join(' ')
+	}
+	return false
 }
 
-const parse = (input, html) => {
+const parse = (input, html, output) => {
+	if (input === false) {
+		return ''
+	}
+	if (typeof output !== 'string' || !output) {
+		var output = ''
+	}
 	if (Array.isArray(input)) {
 		input = input.join(' ')
 	}
@@ -23,10 +32,17 @@ const parse = (input, html) => {
 		} else if (total && total.isString) {
 			if (current === '"') {
 				total.stop = true
-				total.output += next(index, tags)
+				var hasInput = next(index, tags)
+				if (hasInput) {
+					total.output = parse(
+						hasInput, html, total.output.replace(/\s$/,'')
+					)
+				} else {
+					total.output = total.output.replace(/\s$/,'')
+				}
 				return total
 			}
-			total.output += current
+			total.output += current + ' '
 			return total
 		}
 
@@ -47,7 +63,7 @@ const parse = (input, html) => {
 				break
 			}
 			case '==': {
-				total.output = parse(total.select, html)
+				total.output = total.output || parse(total.select, html)
 				var nextIndex = next(index, tags)
 				if (total.output === parse(nextIndex, html)) {
 					break
@@ -57,7 +73,7 @@ const parse = (input, html) => {
 			case '~=': {
 			}
 			case '||': {
-				total.output = parse(total.select, html)
+				total.output = total.output || parse(total.select, html)
 				if (total.output) {
 					total.stop = true
 					break
@@ -68,7 +84,7 @@ const parse = (input, html) => {
 				break
 			}
 			case '++': {
-				total.output = parse(total.select, html)
+				total.output = total.output || parse(total.select, html)
 				var nextIndex = next(index, tags)
 				var addOutput = parse(nextIndex, html)
 
@@ -86,7 +102,7 @@ const parse = (input, html) => {
 			case '--': {
 				var nextIndex = next(index, tags)
 				var removeRaw = parse(nextIndex, html)
-				var output = parse(total.select, html)
+				var output = total.output || parse(total.select, html)
 
 				if (output && output.replace && typeof output.replace == 'function') {
 					total.output = output.replace(removeRaw, '')
@@ -107,7 +123,7 @@ const parse = (input, html) => {
 		return total
 	}, {
 		select: '',
-		output: '',
+		output: output,
 		table: false,
 		stop: false,
 		isString: false
@@ -117,6 +133,8 @@ const parse = (input, html) => {
 		return false
 	} else if (data.output && data.output !== '') {
 		return data.output
+	} else if (typeof data.output !== 'string') {
+		return data.output
 	} else if (data.select && data.table || data.table === '') {
 		var select = data.table
 		var nameOfIndex = 'index'
@@ -124,13 +142,10 @@ const parse = (input, html) => {
 		var type = 'string' //array or object
 		if (select.startsWith('{')) {
 			type = 'object'
-			select = select.split(',')
-			nameOfIndex = select[0]
-			nameOfData = select[1]
-			select = select.splice(2, select.length)
-				.join(',')
-				.replace(/^{/, '')
-				.replace(/}$/, '')
+			select = ((select.replace(/^{/, '')).replace(/}$/, '')).split(',')
+			nameOfIndex = select[0].replace(/\s/, '')
+			nameOfData = select[1].replace(/\s/, '')
+			select = select.splice(2, select.length).join(',')
 		} else if (select.startsWith('[')) {
 			type = 'array'
 			select = (select.replace(/^\[/, '')).replace(/]$/, '')
@@ -150,17 +165,17 @@ const parse = (input, html) => {
 			return table.join(', ')
 		}
 		return table
-	} else if (typeof data.select == 'string' || data.select) {
+	} else if (typeof data.select == 'string') {
 		if (data.select === '') {
 			return html.text()
-		}
-
-		if (typeof html == 'function') {
-			return html(data.select).text()
-		} else if (typeof html == 'object' && typeof html.children == 'function') {
-			return html.children(data.select).text()
-		} else if (typeof html.text == 'function') {
-			return html.text()
+		} else {
+			if (typeof html == 'function') {
+				return html(data.select).text()
+			} else if (typeof html == 'object' && typeof html.children == 'function') {
+				return html.children(data.select).text()
+			} else if (typeof html.text == 'function') {
+				return html.text()
+			}
 		}
 		//TODO: Error
 		return 'ERRRO!'
@@ -168,79 +183,4 @@ const parse = (input, html) => {
 	return false
 }
 
-const cheerio = require('cheerio')
-
-/*
-var html = cheerio.load(`
-<div class="title">
-	<h2>Hello world</h2>
-</div>
-`)
-console.log(parse('!! my comment in ScrapperScript', html))
-//my comment in ScrapperScript
-console.log(parse('div >> h2 !! my comment in ScrapperScript', html))
-//Hello world
-console.log(parse('div >> h2 == "Hello world"', html))
-//Hello world
-*/
-
-/*
-var html = cheerio.load(`
-<div class="title">
-	<h2>Hello world</h2>
-	<h2>Hello world</h2>
-	<h2>Hello world</h2>
-</div>
-`)
-console.log(parse('div >> h2 @> {number, text, == "Hello world"}', html))
-//[
-//{ '{number': 0, ' text': 'Hello world' },
-//{ '{number': 1, ' text': 'Hello world' },
-//{ '{number': 2, ' text': 'Hello world' }
-//]
-console.log(parse('div >> h2 @> []', html))
-//[ 'Hello world', 'Hello world', 'Hello world' ]
-console.log(parse('div >> h2 @> ', html))
-//Hello world, Hello world, Hello world
-*/
-
-/*
-var html = cheerio.load(`
-<div class="title">
-	<h2>Title: <label>Hello world</label></h2>
-	<h2>Title: <label>Hello world</label></h2>
-	<h2>Title: <label>Hello world</label></h2>
-</div>
-`)
-console.log(parse('div >> h2 @> {number, text, label == "Hello world"}', html))
-//[
-//{ '{number': 0, ' text': 'Hello world' },
-//{ '{number': 1, ' text': 'Hello world' },
-//{ '{number': 2, ' text': 'Hello world' }
-//]
-console.log(parse('div >> h2 @> [label]', html))
-//[ 'Hello world', 'Hello world', 'Hello world' ]
-console.log(parse('div >> h2 @> label', html))
-//Hello world, Hello world, Hello world
-*/
-
-
-var html = cheerio.load(`
-<div>
-	<h1>Tiago</h1>
-	<h2>Danin</h2>
-</div>
-`)
-console.log(parse('h1 ++ h2', html))
-//TiagoDanin
-console.log(parse('h1 ++ #> 2018 ##', html))
-//Tiago2018
-console.log(parse('h3 || h1', html))
-//Tiago
-console.log(parse('h3 || #> 2018 ##', html))
-//2018
-console.log(parse('h3 || h4 || h1 ++ h2 ++ #> . ##', html))
-//TiagoDanin.
-console.log(parse('h1 -- " Tia "', html))
-//go
-" "
+module.exports = parse
