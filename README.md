@@ -32,14 +32,15 @@ npm install scraperscript --save
 ## Dependencies
 
 - [cheerio](https://ghub.io/cheerio): Tiny, fast, and elegant implementation of core jQuery designed specifically for the server
-- [json-stringify-safe](https://ghub.io/json-stringify-safe): Like JSON.stringify, but doesn&#39;t blow up on circular refs.
 - [axios](https://ghub.io/axios): Promise based HTTP client for the browser and node.js
-- [express](https://ghub.io/express): Fast, unopinionated, minimalist web framework
-- [body-parser](https://ghub.io/body-parser): Node.js body parsing middleware
 
 ## Dev Dependencies
 
 - [mocha](https://ghub.io/mocha): simple, flexible, fun test framework
+- [express](https://ghub.io/express): Fast, unopinionated, minimalist web framework
+- [body-parser](https://ghub.io/body-parser): Node.js body parsing middleware
+- [json-stringify-safe](https://ghub.io/json-stringify-safe): Like JSON.stringify, but doesn&#39;t blow up on circular refs.
+
 
 ## License
 
