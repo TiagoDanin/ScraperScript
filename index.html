@@ -81,8 +81,39 @@ baseURL: https://tiagodanin.github.io
 
 
 <div class="uk-container">
-	<h1 id="scraperscript"><a href="#scraperscript">ScraperScript</a></h1>
+	<h1 id="scraperscript-build-status"><a href="#scraperscript-build-status">ScraperScript <a href="https://travis-ci.org/TiagoDanin/ScraperScript"><img src="https://travis-ci.org/TiagoDanin/ScraperScript.png?branch=master" alt="Build Status"></a></a></h1>
 <p>ScraperScript is a query language for Web Scraping</p>
+<h2 id="how-use"><a href="#how-use">How use</a></h2>
+<p>Use the command <code>scraperscript myfile</code> or server</p>
+<p>Example file.</p>
+<pre><code>@https://helloword.site/list
+!! A comment ...
+- names: html >> body >> div >> h2 @> {number, text, bold} :object
+- hasTitle: html >> head >> title == " my string " :boolean
+- title: html >> head >> title :string
+</code></pre>
+<h2 id="installation"><a href="#installation">Installation</a></h2>
+<p>This is a <a href="https://nodejs.org/">Node.js</a> module available through the
+<a href="https://www.npmjs.com/">npm registry</a>. It can be installed using the
+<a href="https://docs.npmjs.com/getting-started/installing-npm-packages-locally"><code>npm</code></a>
+or
+<a href="https://yarnpkg.com/en/"><code>yarn</code></a>
+command line tools.</p>
+<pre><code class="hljs language-sh">npm install scraperscript --save</code></pre>
+<h2 id="dependencies"><a href="#dependencies">Dependencies</a></h2>
+<ul>
+<li><a href="https://ghub.io/cheerio">cheerio</a>: Tiny, fast, and elegant implementation of core jQuery designed specifically for the server</li>
+<li><a href="https://ghub.io/json-stringify-safe">json-stringify-safe</a>: Like JSON.stringify, but doesn&#x26;<a href="https://github.com/CuboHub/CuboHub/issues/39">#39</a>;t blow up on circular refs.</li>
+<li><a href="https://ghub.io/axios">axios</a>: Promise based HTTP client for the browser and node.js</li>
+<li><a href="https://ghub.io/express">express</a>: Fast, unopinionated, minimalist web framework</li>
+<li><a href="https://ghub.io/body-parser">body-parser</a>: Node.js body parsing middleware</li>
+</ul>
+<h2 id="dev-dependencies"><a href="#dev-dependencies">Dev Dependencies</a></h2>
+<ul>
+<li><a href="https://ghub.io/mocha">mocha</a>: simple, flexible, fun test framework</li>
+</ul>
+<h2 id="license"><a href="#license">License</a></h2>
+<p>MIT</p>
 
 
 	<hr class="uk-margin-top-remove uk-divider-icon">
