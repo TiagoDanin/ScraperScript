@@ -1,4 +1,6 @@
 const cheerio = require('cheerio')
+const axios = require('axios')
+const stringify = require('json-stringify-safe')
 
 const next = (index, tags) => {
 	if (tags && tags[index+1]) {
@@ -178,14 +180,18 @@ const parseQuery = (input, html, output) => {
 				return html.text()
 			}
 		}
-		//TODO: Error
-		return 'ERRRO!'
 	}
-	return false
+	return {
+		error: true,
+		msg: `"${data.select}"  is invalid`
+	}
 }
 
 const parseValues = (input) => {
 	var match = input.match(/^-\s([_-\w]*):\s*(.*)\s*:(\w*)/)
+	if (!match) {
+		return false
+	}
 	return output = {
 		key: match[1],
 		query: match[2],
@@ -218,18 +224,49 @@ const parseType = (input, type) => {
 	return input
 }
 
-const parseFile = (code, htmlRaw) => {
+const parseFile = async (input) => {
 	var output = {}
-	var html = parseHtml(htmlRaw)
-	for (var line of code.split('\n')) {
-		var values = parseValues(line)
-		output[values.key] = parseType(
-			parseQuery(values.query, html),
-			values.type
-		)
-		return Boolean(input)
+	output.errorsMsg = []
+	output.error = false
+
+	const lines = input.split('\n')
+	const url = lines[0].replace(/^@/, '')
+	const response = await axios({
+		method: 'GET',
+		url: url
+	}).catch((e) => {
+		return {
+			error: true,
+			msg: e
+		}
+	})
+	if (response.error) {
+		return JSON.stringify(response)
 	}
-	return output
+	const html = parseHtml(response.data.toString())
+
+	try {
+		for (var line of lines) {
+			var values = parseValues(line)
+			if (values) {
+				var data = parseQuery(values.query, html)
+				if (data && data.error) {
+					output.error = true
+					output.errorsMsg.push(data.msg)
+				}
+				output[values.key] = parseType(
+					data,
+					values.type
+				)
+			}
+		}
+	} catch (e) {
+		return JSON.stringify({
+			error: true,
+			msg: e
+		})
+	}
+	return JSON.stringify(output)
 }
 
 module.exports = {
@@ -237,5 +274,6 @@ module.exports = {
 	parseHtml,
 	parseQuery,
 	parseValues,
-	parseType
+	parseType,
+	parseFile
 }
