@@ -1,16 +1,20 @@
 {
   "name": "scraperscript",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "ScraperScript is a query language for Web Scraping",
-  "main": "index.js",
+  "main": "src/index.js",
+  "bin": {
+    "scraperscript": "bin/bin.js"
+  },
   "scripts": {
-    "test": "mocha --exit --timeout 100000"
+    "test": "mocha --exit --timeout 100000",
+    "server": "node server/server.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/TiagoDanin/ScraperScript.git"
   },
-  "author": "",
+  "author": "Tiago Danin",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/TiagoDanin/ScraperScript/issues"
@@ -25,5 +29,19 @@
   },
   "devDependencies": {
     "mocha": "5.2.0"
-  }
+  },
+  "bin": {
+    "scraperscript": "bin.js"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "keywords": [
+    "scraper",
+    "script",
+    "language",
+    "query",
+    "web",
+    "scraping"
+  ]
 }
