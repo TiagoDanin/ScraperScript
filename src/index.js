@@ -206,6 +206,8 @@ const parseHtml = (input) => {
 const parseType = (input, type) => {
 	if (type == 'string') {
 		return input.toString()
+	} else if (type == 'number') {
+		return Number(input)
 	} else if (type == 'boolean') {
 		return Boolean(input)
 	} else if (type == 'object') {

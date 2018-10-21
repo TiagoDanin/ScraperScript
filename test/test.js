@@ -40,8 +40,8 @@ describe('query query', () => {
 	})
 	it('!!', () => {
 		assert.equal(
-			parseQuery('!! my comment in ScrapperScrip', fixtures.helloWorld),
-			'my comment in ScrapperScrip'
+			parseQuery('!! my comment in ScrapperScript', fixtures.helloWorld),
+			'my comment in ScrapperScript'
 		)
 		assert.equal(
 			parseQuery('div >> h2 !! my comment in ScrapperScript', fixtures.helloWorld),
