@@ -86,12 +86,77 @@ baseURL: https://tiagodanin.github.io
 <h2 id="how-use"><a href="#how-use">How use</a></h2>
 <p>Use the command <code>scraperscript myfile</code> or server</p>
 <p>Example file.</p>
-<pre><code>@https://helloword.site/list
+<pre><code class="hljs language-markdown">@https://helloword.site/list
 !! A comment ...
-- names: html >> body >> div >> h2 @> {number, text, bold} :object
-- hasTitle: html >> head >> title == " my string " :boolean
-- title: html >> head >> title :string
-</code></pre>
+<span class="hljs-bullet">- </span>names: html >> body >> div >> h2 @> {number, text, bold} :array
+<span class="hljs-bullet">- </span>hasTitle: html >> head >> title == " my string " :boolean
+<span class="hljs-bullet">- </span>title: html >> head >> title :string</code></pre>
+<p>Tis return an json:</p>
+<pre><code class="hljs language-json"><span class="hljs-string">"error"</span>: <span class="hljs-literal">false</span>,
+<span class="hljs-string">"errorsMsg"</span>: [],
+<span class="hljs-string">"names"</span>: [
+	{
+		<span class="hljs-attr">"number"</span>: <span class="hljs-number">0</span>,
+		<span class="hljs-attr">"text"</span>: <span class="hljs-string">"Tiago"</span>
+	},
+	{
+		<span class="hljs-attr">"number"</span>: <span class="hljs-number">0</span>,
+		<span class="hljs-attr">"text"</span>: <span class="hljs-string">"James"</span>
+	}
+],
+<span class="hljs-string">"hasTitle"</span>: <span class="hljs-literal">true</span>,
+<span class="hljs-string">"title"</span>: <span class="hljs-string">"my string"</span></code></pre>
+<h2 id="syntax"><a href="#syntax">Syntax</a></h2>
+<p>Place the URL in the first line: <code>@http://myurl.com</code></p>
+<p>Other lines: <code>- key: query :type</code></p>
+<p>PS: Space is important.</p>
+<h3 id="key"><a href="#key">Key</a></h3>
+<p>Name</p>
+<p>Rules:</p>
+<ul>
+<li>Use at the beginning of the line</li>
+<li>Format <code>- key:</code></li>
+</ul>
+<p>Example: <code>- name:</code></p>
+<h3 id="type"><a href="#type">Type</a></h3>
+<p>Return type</p>
+<p>Rules:</p>
+<ul>
+<li>Use at the end of the line</li>
+<li>Format <code>:type</code></li>
+</ul>
+<p>Types:</p>
+<ul>
+<li>array</li>
+<li>object</li>
+<li>boolean</li>
+<li>string</li>
+<li>number</li>
+</ul>
+<p>Example: <code>:string</code></p>
+<h3 id="query"><a href="#query">Query</a></h3>
+<p><strong>String</strong>
+<code>" my string "</code></p>
+<p>NOTE: <code>"my string"</code> is invalid</p>
+<p><strong>Comment</strong>
+<code>!! my comment in ScrapperScript</code></p>
+<p><strong>Elements</strong>
+<code>nameOfHtmlElementOne >> nameOfHtmlElementTwo</code></p>
+<p><strong>Map elements [String]</strong>
+<code>nameOfHtmlElementOne @> nameOfSubHtmlElement</code></p>
+<p><strong>Map elements [Array]</strong>
+<code>nameOfHtmlElementOne @> [nameOfSubHtmlElement]</code></p>
+<p><strong>Map elements [Object]</strong>
+<code>nameOfHtmlElementOne @> {nameOfIndex, nameOfData, nameOfSubHtmlElement}</code></p>
+<p><strong>Addition</strong>
+<code>nameOfHtmlElementOne ++ nameOfHtmlElementTwo</code></p>
+<p><strong>Replace</strong>
+<code>nameOfHtmlElementOne -- nameOfHtmlElementTwo</code></p>
+<p><strong>Equal comparison or Different</strong>
+<code>nameOfHtmlElementOne == nameOfHtmlElementTwo</code></p>
+<p><code>nameOfHtmlElementOne ~= nameOfHtmlElementTwo</code></p>
+<p><strong>OR</strong>
+<code>nameOfHtmlElementOne || nameOfHtmlElementTwo</code></p>
 <h2 id="installation"><a href="#installation">Installation</a></h2>
 <p>This is a <a href="https://nodejs.org/">Node.js</a> module available through the
 <a href="https://www.npmjs.com/">npm registry</a>. It can be installed using the
