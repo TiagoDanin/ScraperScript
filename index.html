@@ -91,7 +91,7 @@ baseURL: https://tiagodanin.github.io
 <span class="hljs-bullet">- </span>names: html >> body >> div >> h2 @> {number, text, bold} :array
 <span class="hljs-bullet">- </span>hasTitle: html >> head >> title == " my string " :boolean
 <span class="hljs-bullet">- </span>title: html >> head >> title :string</code></pre>
-<p>Tis return an json:</p>
+<p>This return an json:</p>
 <pre><code class="hljs language-json"><span class="hljs-string">"error"</span>: <span class="hljs-literal">false</span>,
 <span class="hljs-string">"errorsMsg"</span>: [],
 <span class="hljs-string">"names"</span>: [
@@ -135,28 +135,28 @@ baseURL: https://tiagodanin.github.io
 </ul>
 <p>Example: <code>:string</code></p>
 <h3 id="query"><a href="#query">Query</a></h3>
-<p><strong>String</strong>
-<code>" my string "</code></p>
+<p><strong>String</strong></p>
+<p><code>" my string "</code></p>
 <p>NOTE: <code>"my string"</code> is invalid</p>
-<p><strong>Comment</strong>
-<code>!! my comment in ScrapperScript</code></p>
-<p><strong>Elements</strong>
-<code>nameOfHtmlElementOne >> nameOfHtmlElementTwo</code></p>
-<p><strong>Map elements [String]</strong>
-<code>nameOfHtmlElementOne @> nameOfSubHtmlElement</code></p>
-<p><strong>Map elements [Array]</strong>
-<code>nameOfHtmlElementOne @> [nameOfSubHtmlElement]</code></p>
-<p><strong>Map elements [Object]</strong>
-<code>nameOfHtmlElementOne @> {nameOfIndex, nameOfData, nameOfSubHtmlElement}</code></p>
-<p><strong>Addition</strong>
-<code>nameOfHtmlElementOne ++ nameOfHtmlElementTwo</code></p>
-<p><strong>Replace</strong>
-<code>nameOfHtmlElementOne -- nameOfHtmlElementTwo</code></p>
-<p><strong>Equal comparison or Different</strong>
-<code>nameOfHtmlElementOne == nameOfHtmlElementTwo</code></p>
+<p><strong>Comment</strong></p>
+<p><code>!! my comment in ScrapperScript</code></p>
+<p><strong>Elements</strong></p>
+<p><code>nameOfHtmlElementOne >> nameOfHtmlElementTwo</code></p>
+<p><strong>Map elements [String]</strong></p>
+<p><code>nameOfHtmlElementOne @> nameOfSubHtmlElement</code></p>
+<p><strong>Map elements [Array]</strong></p>
+<p><code>nameOfHtmlElementOne @> [nameOfSubHtmlElement]</code></p>
+<p><strong>Map elements [Object]</strong></p>
+<p><code>nameOfHtmlElementOne @> {nameOfIndex, nameOfData, nameOfSubHtmlElement}</code></p>
+<p><strong>Addition</strong></p>
+<p><code>nameOfHtmlElementOne ++ nameOfHtmlElementTwo</code></p>
+<p><strong>Replace</strong></p>
+<p><code>nameOfHtmlElementOne -- nameOfHtmlElementTwo</code></p>
+<p><strong>Equal comparison or Different</strong></p>
+<p><code>nameOfHtmlElementOne == nameOfHtmlElementTwo</code></p>
 <p><code>nameOfHtmlElementOne ~= nameOfHtmlElementTwo</code></p>
-<p><strong>OR</strong>
-<code>nameOfHtmlElementOne || nameOfHtmlElementTwo</code></p>
+<p><strong>OR</strong></p>
+<p><code>nameOfHtmlElementOne || nameOfHtmlElementTwo</code></p>
 <h2 id="installation"><a href="#installation">Installation</a></h2>
 <p>This is a <a href="https://nodejs.org/">Node.js</a> module available through the
 <a href="https://www.npmjs.com/">npm registry</a>. It can be installed using the
