@@ -16,7 +16,7 @@ Example file.
 - title: html >> head >> title :string
 ```
 
-Tis return an json:
+This return an json:
 
 ```json
 "error": false,
@@ -70,37 +70,47 @@ Example: `:string`
 ### Query
 
 **String**
+
 `" my string "`
 
 NOTE: `"my string"` is invalid
 
 **Comment**
+
 `!! my comment in ScrapperScript`
 
 **Elements**
+
 `nameOfHtmlElementOne >> nameOfHtmlElementTwo`
 
 **Map elements [String]**
+
 `nameOfHtmlElementOne @> nameOfSubHtmlElement`
 
 **Map elements [Array]**
+
 `nameOfHtmlElementOne @> [nameOfSubHtmlElement]`
 
 **Map elements [Object]**
+
 `nameOfHtmlElementOne @> {nameOfIndex, nameOfData, nameOfSubHtmlElement}`
 
 **Addition**
+
 `nameOfHtmlElementOne ++ nameOfHtmlElementTwo`
 
 **Replace**
+
 `nameOfHtmlElementOne -- nameOfHtmlElementTwo`
 
 **Equal comparison or Different**
+
 `nameOfHtmlElementOne == nameOfHtmlElementTwo`
 
 `nameOfHtmlElementOne ~= nameOfHtmlElementTwo`
 
 **OR**
+
 `nameOfHtmlElementOne || nameOfHtmlElementTwo`
 
 ## Installation
