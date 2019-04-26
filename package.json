@@ -28,7 +28,7 @@
     "mocha": "6.0.2",
     "express": "4.16.4",
     "json-stringify-safe": "5.0.1",
-    "body-parser": "1.18.3"
+    "body-parser": "1.19.0"
   },
   "bin": {
     "scraperscript": "bin.js"
