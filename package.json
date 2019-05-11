@@ -1,48 +1,48 @@
 {
-  "name": "scraperscript",
-  "version": "1.0.1",
-  "description": "ScraperScript is a query language for Web Scraping",
-  "main": "src/index.js",
-  "bin": {
-    "scraperscript": "bin.js"
-  },
-  "scripts": {
-    "test": "mocha --exit --timeout 100000",
-    "server": "node server/server.js",
-    "snyk-protect": "snyk protect",
-    "prepublish": "npm run snyk-protect"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/TiagoDanin/ScraperScript.git"
-  },
-  "author": "Tiago Danin",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/TiagoDanin/ScraperScript/issues"
-  },
-  "homepage": "https://github.com/TiagoDanin/ScraperScript#readme",
-  "dependencies": {
-    "cheerio": "1.0.0-rc.3",
-    "axios": "0.18.0",
-    "snyk": "^1.161.1"
-  },
-  "devDependencies": {
-    "mocha": "6.0.2",
-    "express": "4.16.4",
-    "json-stringify-safe": "5.0.1",
-    "body-parser": "1.19.0"
-  },
-  "directories": {
-    "test": "test"
-  },
-  "keywords": [
-    "scraper",
-    "script",
-    "language",
-    "query",
-    "web",
-    "scraping"
-  ],
-  "snyk": true
+	"name": "scraperscript",
+	"version": "1.0.1",
+	"description": "ScraperScript is a query language for Web Scraping",
+	"main": "src/index.js",
+	"bin": {
+		"scraperscript": "bin.js"
+	},
+	"scripts": {
+		"test": "mocha --exit --timeout 100000",
+		"server": "node server/server.js",
+		"snyk-protect": "snyk protect",
+		"prepublish": "npm run snyk-protect"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/TiagoDanin/ScraperScript.git"
+	},
+	"author": "Tiago Danin",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/TiagoDanin/ScraperScript/issues"
+	},
+	"homepage": "https://github.com/TiagoDanin/ScraperScript#readme",
+	"dependencies": {
+		"cheerio": "1.0.0-rc.3",
+		"axios": "^0.18.0",
+		"snyk": "^1.161.1"
+	},
+	"devDependencies": {
+		"mocha": "6.0.2",
+		"express": "^4.16.4",
+		"json-stringify-safe": "5.0.1",
+		"body-parser": "1.19.0"
+	},
+	"directories": {
+		"test": "test"
+	},
+	"keywords": [
+		"scraper",
+		"script",
+		"language",
+		"query",
+		"web",
+		"scraping"
+	],
+	"snyk": true
 }
