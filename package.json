@@ -24,7 +24,7 @@
 	"homepage": "https://github.com/TiagoDanin/ScraperScript#readme",
 	"dependencies": {
 		"cheerio": "1.0.0-rc.3",
-		"axios": "^0.18.0",
+		"axios": "^0.19.0",
 		"snyk": "^1.161.1"
 	},
 	"devDependencies": {
