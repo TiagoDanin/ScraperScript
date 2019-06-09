@@ -1,48 +1,79 @@
 {
 	"name": "scraperscript",
-	"version": "1.0.1",
-	"description": "ScraperScript is a query language for Web Scraping",
 	"main": "src/index.js",
 	"bin": {
-		"scraperscript": "bin.js"
+		"scraperscript": "bin/index.js"
 	},
+	"preferGlobal": true,
+	"version": "1.0.1",
+	"description": "ScraperScript is a query language for Web Scraping",
+	"author": {
+		"email": "TiagoDanin@outlook.com",
+		"name": "Tiago Danin",
+		"url": "https://TiagoDanin.github.io"
+	},
+	"license": "MIT",
+	"keywords": [
+		"language",
+		"query",
+		"scraper",
+		"scraping",
+		"script",
+		"web"
+	],
 	"scripts": {
+		"start": "node bin/index.js",
 		"test": "mocha --exit --timeout 100000",
-		"server": "node server/server.js",
-		"snyk-protect": "snyk protect",
-		"prepublish": "npm run snyk-protect"
+		"server": "node server/server.js"
 	},
+	"engines": {
+		"node": ">=8"
+	},
+	"private": false,
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/TiagoDanin/ScraperScript.git"
 	},
-	"author": "Tiago Danin",
-	"license": "MIT",
+	"homepage": "https://TiagoDanin.github.io/ScraperScript",
 	"bugs": {
 		"url": "https://github.com/TiagoDanin/ScraperScript/issues"
 	},
-	"homepage": "https://github.com/TiagoDanin/ScraperScript#readme",
+	"github": {
+		"name": "ScraperScript",
+		"owner": "TiagoDanin"
+	},
+	"files": [
+		"LICENSE",
+		"Procfile",
+		"README.md",
+		"bin",
+		"package.json",
+		"server",
+		"src"
+	],
 	"dependencies": {
-		"cheerio": "1.0.0-rc.3",
 		"axios": "^0.18.1",
-		"snyk": "^1.161.1"
+		"cheerio": "^1.0.0-rc.3"
 	},
 	"devDependencies": {
-		"mocha": "6.0.2",
+		"body-parser": "1.19.0",
 		"express": "^4.16.4",
-		"json-stringify-safe": "5.0.1",
-		"body-parser": "1.19.0"
+		"json-stringify-safe": "^5.0.1",
+		"mocha": "^6.0.2",
+		"xo": "^0.24.0"
+	},
+	"xo": {
+		"rules": {
+			"quote-props": "warn",
+			"eqeqeq": "warn",
+			"array-callback-return": "warn",
+			"require-atomic-updates": "warn",
+			"no-else-return": "off"
+		},
+		"semicolon": false
 	},
 	"directories": {
 		"test": "test"
 	},
-	"keywords": [
-		"scraper",
-		"script",
-		"language",
-		"query",
-		"web",
-		"scraping"
-	],
 	"snyk": true
 }

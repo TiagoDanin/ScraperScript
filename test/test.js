@@ -1,17 +1,17 @@
 const fs = require('fs')
 const assert = require('assert')
-const { parseHtml, parseValues, parseQuery } = require('../src')
+const {parseHtml, parseValues, parseQuery} = require('../src')
 
-var fixtures = {}
+const fixtures = {}
 const files = ['name', 'helloWorld', 'helloList']
-files.forEach((filename) => {
+files.forEach(filename => {
 	fixtures[filename] = parseHtml(
 		fs.readFileSync(`test/fixtures/${filename}.html`).toString()
 	)
 })
 
 describe('get values', () => {
-	var r = parseValues('- name: div >> h2 @> {number, text, bold == " tiago "}:string')
+	const r = parseValues('- name: div >> h2 @> {number, text, bold == " tiago "}:string')
 	assert.equal(r.key, 'name')
 	assert.equal(r.query, 'div >> h2 @> {number, text, bold == " tiago "}')
 	assert.equal(r.type, 'string')
@@ -25,7 +25,7 @@ describe('query query', () => {
 		)
 	})
 	it('@>', () => {
-		var r = parseQuery('div >> h2 @> {number, text, bold == " tiago "}', fixtures.helloList)
+		let r = parseQuery('div >> h2 @> {number, text, bold == " tiago "}', fixtures.helloList)
 		assert.equal(r[1].number, 1)
 		assert.equal(r[1].text, 'tiago')
 		assert.equal(r[0].text, false)
