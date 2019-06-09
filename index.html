@@ -81,9 +81,16 @@ baseURL: https://tiagodanin.github.io
 
 
 <div class="uk-container">
-	<h1 id="scraperscript-build-status"><a href="#scraperscript-build-status">ScraperScript <a href="https://travis-ci.org/TiagoDanin/ScraperScript"><img src="https://travis-ci.org/TiagoDanin/ScraperScript.png?branch=master" alt="Build Status"></a></a></h1>
+	<h1 id="scraperscript"><a href="#scraperscript">ScraperScript</a></h1>
+<p><a href="https://travis-ci.org/TiagoDanin/ScraperScript"><img src="https://img.shields.io/travis/TiagoDanin/ScraperScript.svg?branch=master&#x26;style=flat-square" alt="Travis"></a> <a href="https://npmjs.org/package/scraperscript"><img src="https://img.shields.io/npm/dt/scraperscript.svg?style=flat-square" alt="Downloads"></a> <a href="https://npmjs.org/package/scraperscript"><img src="https://img.shields.io/node/v/scraperscript.svg?style=flat-square" alt="Node"></a> <a href="https://npmjs.org/package/scraperscript"><img src="https://img.shields.io/npm/v/scraperscript.svg?style=flat-square" alt="Version"></a> <a href="https://github.com/xojs/xo"><img src="https://img.shields.io/badge/code%20style-XO-red.svg?style=flat-square" alt="XO code style"></a> </p>
 <p>ScraperScript is a query language for Web Scraping</p>
-<h2 id="how-use"><a href="#how-use">How use</a></h2>
+<h2 id="installation"><a href="#installation">Installation</a></h2>
+<p>Module available through the <a href="https://www.npmjs.com/">npm registry</a>. It can be installed using the  <a href="https://docs.npmjs.com/getting-started/installing-npm-packages-locally"><code>npm</code></a> or <a href="https://yarnpkg.com/en/"><code>yarn</code></a> command line tools.</p>
+<pre><code class="hljs language-sh"><span class="hljs-comment"># NPM</span>
+npm install scraperscript --global
+<span class="hljs-comment"># Or Using Yarn</span>
+yarn global add scraperscript</code></pre>
+<h2 id="documentation"><a href="#documentation">Documentation</a></h2>
 <p>Use the command <code>scraperscript myfile</code> or server</p>
 <p>Example file.</p>
 <pre><code class="hljs language-markdown">@https://helloword.site/list
@@ -157,14 +164,12 @@ baseURL: https://tiagodanin.github.io
 <p><code>nameOfHtmlElementOne ~= nameOfHtmlElementTwo</code></p>
 <p><strong>OR</strong></p>
 <p><code>nameOfHtmlElementOne || nameOfHtmlElementTwo</code></p>
-<h2 id="installation"><a href="#installation">Installation</a></h2>
-<p>This is a <a href="https://nodejs.org/">Node.js</a> module available through the
-<a href="https://www.npmjs.com/">npm registry</a>. It can be installed using the
-<a href="https://docs.npmjs.com/getting-started/installing-npm-packages-locally"><code>npm</code></a>
-or
-<a href="https://yarnpkg.com/en/"><code>yarn</code></a>
-command line tools.</p>
-<pre><code class="hljs language-sh">npm install scraperscript --save</code></pre>
+<h2 id="tests"><a href="#tests">Tests</a></h2>
+<p>To run the test suite, first install the dependencies, then run <code>test</code>:</p>
+<pre><code class="hljs language-sh"><span class="hljs-comment"># NPM</span>
+npm <span class="hljs-built_in">test</span>
+<span class="hljs-comment"># Or Using Yarn</span>
+yarn <span class="hljs-built_in">test</span></code></pre>
 <h2 id="dependencies"><a href="#dependencies">Dependencies</a></h2>
 <ul>
 <li><a href="https://ghub.io/axios">axios</a>: Promise based HTTP client for the browser and node.js</li>
@@ -174,14 +179,13 @@ command line tools.</p>
 <ul>
 <li><a href="https://ghub.io/body-parser">body-parser</a>: Node.js body parsing middleware</li>
 <li><a href="https://ghub.io/express">express</a>: Fast, unopinionated, minimalist web framework</li>
-<li><a href="https://ghub.io/json-stringify-safe">json-stringify-safe</a>: Like JSON.stringify, but doesn't blow up on circular refs.</li>
 <li><a href="https://ghub.io/mocha">mocha</a>: simple, flexible, fun test framework</li>
 <li><a href="https://ghub.io/xo">xo</a>: JavaScript happiness style linter ❤️</li>
 </ul>
 <h2 id="contributors"><a href="#contributors">Contributors</a></h2>
 <p>Pull requests and stars are always welcome. For bugs and feature requests, please <a href="https://github.com/TiagoDanin/ScraperScript/issues">create an issue</a>. <a href="https://github.com/TiagoDanin/ScraperScript/graphs/contributors">List of all contributors</a>.</p>
 <h2 id="license"><a href="#license">License</a></h2>
-<p>MIT</p>
+<p><a href="LICENSE">MIT</a> © <a href="https://TiagoDanin.github.io">Tiago Danin</a></p>
 
 
 	<hr class="uk-margin-top-remove uk-divider-icon">
