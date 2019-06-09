@@ -5,7 +5,7 @@
 		"scraperscript": "bin/index.js"
 	},
 	"preferGlobal": true,
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "ScraperScript is a query language for Web Scraping",
 	"author": {
 		"email": "TiagoDanin@outlook.com",
