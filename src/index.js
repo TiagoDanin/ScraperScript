@@ -1,6 +1,5 @@
 const cheerio = require('cheerio')
 const axios = require('axios')
-const stringify = require('json-stringify-safe')
 
 const next = (index, tags) => {
 	if (tags && tags[index + 1]) {
@@ -16,7 +15,7 @@ const parseQuery = (input, html, output) => {
 	}
 
 	if (typeof output !== 'string' || !output) {
-		var output = ''
+		output = ''
 	}
 
 	if (Array.isArray(input)) {
@@ -74,7 +73,7 @@ const parseQuery = (input, html, output) => {
 
 			case '~=': {
 				total.output = total.output || parseQuery(total.select, html)
-				var nextIndex = next(index, tags)
+				const nextIndex = next(index, tags)
 				if (total.output === parseQuery(nextIndex, html)) {
 					break
 				}
@@ -84,7 +83,7 @@ const parseQuery = (input, html, output) => {
 
 			case '==': {
 				total.output = total.output || parseQuery(total.select, html)
-				var nextIndex = next(index, tags)
+				const nextIndex = next(index, tags)
 				if (total.output === parseQuery(nextIndex, html)) {
 					break
 				}
@@ -99,14 +98,14 @@ const parseQuery = (input, html, output) => {
 					break
 				}
 
-				var nextIndex = next(index, tags)
+				const nextIndex = next(index, tags)
 				total.output = parseQuery(nextIndex, html)
 				break
 			}
 
 			case '++': {
 				total.output = total.output || parseQuery(total.select, html)
-				var nextIndex = next(index, tags)
+				const nextIndex = next(index, tags)
 				const addOutput = parseQuery(nextIndex, html)
 
 				if (Array.isArray(total.output)) {
@@ -123,7 +122,7 @@ const parseQuery = (input, html, output) => {
 			}
 
 			case '--': {
-				var nextIndex = next(index, tags)
+				const nextIndex = next(index, tags)
 				const removeRaw = parseQuery(nextIndex, html)
 				const output = total.output || parseQuery(total.select, html)
 
@@ -168,7 +167,7 @@ const parseQuery = (input, html, output) => {
 		return data.output
 	}
 
-	if (data.select && data.table || data.table === '') {
+	if (data.select && (data.table || data.table === '')) {
 		let select = data.table
 		let nameOfIndex = 'index'
 		let nameOfData = 'data'
