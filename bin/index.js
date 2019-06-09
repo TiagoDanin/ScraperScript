@@ -2,13 +2,13 @@
 
 const fs = require('fs')
 const path = require('path')
-const { parseFile } = require('../src')
+const {parseFile} = require('../src')
 
-var file = process.argv[1]
-if (!file) {
+const file = process.argv[1]
+if (file) {
+	const filePath = path.resolve(process.cwd() + '/' + file)
+	const fileRaw = fs.readFileSync(filePath).toString()
+	parseFile(fileRaw).then(r => console.log(r)) // eslint-disable-line promise/prefer-await-to-then
+} else {
 	console.log('Use: scrapperscript myFile')
-	return
 }
-var filePath = path.resolve(process.cwd() + '/' +  file)
-var fileRaw = fs.readFileSync(filePath).toString()
-parseFile(fileRaw).then((r) => console.log(r))

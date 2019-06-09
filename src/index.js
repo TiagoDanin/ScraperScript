@@ -185,7 +185,7 @@ const parseQuery = (input, html, output) => {
 
 		const table = html(data.select).map((index, elem) => {
 			const queryRaw = parseQuery(select, html(elem))
-			if (type == 'object') {
+			if (type === 'object') {
 				const arrayOutput = {}
 				arrayOutput[nameOfIndex] = index
 				arrayOutput[nameOfData] = queryRaw
@@ -194,7 +194,7 @@ const parseQuery = (input, html, output) => {
 
 			return queryRaw
 		}).get()
-		if (type == 'string') {
+		if (type === 'string') {
 			return table.join(', ')
 		}
 
@@ -231,7 +231,7 @@ const parseValues = input => {
 		return false
 	}
 
-	return output = {
+	return {
 		key: match[1],
 		query: match[2],
 		type: match[3]
@@ -243,19 +243,19 @@ const parseHtml = input => {
 }
 
 const parseType = (input, type) => {
-	if (type == 'string') {
+	if (type === 'string') {
 		return input.toString()
 	}
 
-	if (type == 'number') {
+	if (type === 'number') {
 		return Number(input)
 	}
 
-	if (type == 'boolean') {
+	if (type === 'boolean') {
 		return Boolean(input)
 	}
 
-	if (type == 'object') {
+	if (type === 'object') {
 		if (typeof input === 'object') {
 			return input
 		}
@@ -263,7 +263,7 @@ const parseType = (input, type) => {
 		return {input}
 	}
 
-	if (type == 'array') {
+	if (type === 'array') {
 		if (Array.isArray(input)) {
 			return input
 		}
@@ -287,7 +287,7 @@ const parseFile = async input => {
 	}).catch(error => {
 		return {
 			error: true,
-			msg: e
+			msg: error
 		}
 	})
 	if (response.error) {
@@ -325,7 +325,6 @@ const parseFile = async input => {
 module.exports = {
 	parseQuery,
 	parseHtml,
-	parseQuery,
 	parseValues,
 	parseType,
 	parseFile

@@ -1,8 +1,21 @@
-# ScraperScript [![Build Status](https://travis-ci.org/TiagoDanin/ScraperScript.png?branch=master)](https://travis-ci.org/TiagoDanin/ScraperScript)
+# ScraperScript
+
+[![Travis](https://img.shields.io/travis/TiagoDanin/ScraperScript.svg?branch=master&style=flat-square)](https://travis-ci.org/TiagoDanin/ScraperScript) [![Downloads](https://img.shields.io/npm/dt/scraperscript.svg?style=flat-square)](https://npmjs.org/package/scraperscript) [![Node](https://img.shields.io/node/v/scraperscript.svg?style=flat-square)](https://npmjs.org/package/scraperscript) [![Version](https://img.shields.io/npm/v/scraperscript.svg?style=flat-square)](https://npmjs.org/package/scraperscript) [![XO code style](https://img.shields.io/badge/code%20style-XO-red.svg?style=flat-square)](https://github.com/xojs/xo) 
 
 ScraperScript is a query language for Web Scraping
 
-## How use
+## Installation
+
+Module available through the [npm registry](https://www.npmjs.com/). It can be installed using the  [`npm`](https://docs.npmjs.com/getting-started/installing-npm-packages-locally) or [`yarn`](https://yarnpkg.com/en/) command line tools.
+
+```sh
+# NPM
+npm install scraperscript --global
+# Or Using Yarn
+yarn global add scraperscript
+```
+
+## Documentation
 
 Use the command `scraperscript myfile` or server
 
@@ -113,17 +126,15 @@ NOTE: `"my string"` is invalid
 
 `nameOfHtmlElementOne || nameOfHtmlElementTwo`
 
-## Installation
+## Tests
 
-This is a [Node.js](https://nodejs.org/) module available through the
-[npm registry](https://www.npmjs.com/). It can be installed using the
-[`npm`](https://docs.npmjs.com/getting-started/installing-npm-packages-locally)
-or
-[`yarn`](https://yarnpkg.com/en/)
-command line tools.
+To run the test suite, first install the dependencies, then run `test`:
 
 ```sh
-npm install scraperscript --save
+# NPM
+npm test
+# Or Using Yarn
+yarn test
 ```
 
 ## Dependencies
@@ -135,7 +146,6 @@ npm install scraperscript --save
 
 - [body-parser](https://ghub.io/body-parser): Node.js body parsing middleware
 - [express](https://ghub.io/express): Fast, unopinionated, minimalist web framework
-- [json-stringify-safe](https://ghub.io/json-stringify-safe): Like JSON.stringify, but doesn&#x27;t blow up on circular refs.
 - [mocha](https://ghub.io/mocha): simple, flexible, fun test framework
 - [xo](https://ghub.io/xo): JavaScript happiness style linter ❤️
 
@@ -145,4 +155,4 @@ Pull requests and stars are always welcome. For bugs and feature requests, pleas
 
 ## License
 
-MIT
+[MIT](LICENSE) © [Tiago Danin](https://TiagoDanin.github.io)
