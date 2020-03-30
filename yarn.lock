@@ -4137,9 +4137,9 @@ xdg-basedir@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/xdg-basedir/-/xdg-basedir-4.0.0.tgz#4bc8d9984403696225ef83a1573cbbcb4e79db13"
 
-xo@^0.28.0:
-  version "0.28.0"
-  resolved "https://registry.yarnpkg.com/xo/-/xo-0.28.0.tgz#8dc9d2efff505f03c4068121aa49e543c14a71ac"
+xo@^0.28.1:
+  version "0.28.1"
+  resolved "https://registry.yarnpkg.com/xo/-/xo-0.28.1.tgz#90284169f31972728b5821878b4e0368ed9e6671"
   dependencies:
     "@typescript-eslint/eslint-plugin" "^2.23.0"
     "@typescript-eslint/parser" "^2.23.0"
