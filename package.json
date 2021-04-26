@@ -27,7 +27,7 @@
 		"server": "node server/server.js"
 	},
 	"engines": {
-		"node": ">=8"
+		"node": ">=v14.16.1"
 	},
 	"private": false,
 	"repository": {
